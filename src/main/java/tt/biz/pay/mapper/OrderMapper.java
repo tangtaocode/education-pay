@@ -15,8 +15,5 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
     
-    int updateByUniqueSelective(Order record);
-    
     Order selectByParams(Order record);
-    
 }

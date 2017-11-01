@@ -14,7 +14,7 @@ public class CommonDTO implements IPayDTO,Serializable
 {
   private String mac;//Android端设备地址
   
-  private Long openappid; //当前门店价格查询系统id
+  private String openid; //微信号ip
   
   private Double totalAmt;//总金额
   
@@ -26,16 +26,17 @@ public class CommonDTO implements IPayDTO,Serializable
   {
     this.mac = mac;
   }
-	public Long getOpenappid() {
-		return openappid;
-	}
-	public void setOpenappid(Long openappid) {
-		this.openappid = openappid;
-	}
 	public Double getTotalAmt() {
 		return totalAmt;
 	}
 	public void setTotalAmt(Double totalAmt) {
 		this.totalAmt = totalAmt;
 	}
+	public String getOpenid() {
+		return openid;
+	}
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+	
 }

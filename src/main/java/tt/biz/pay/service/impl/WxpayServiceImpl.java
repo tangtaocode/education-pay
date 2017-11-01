@@ -67,6 +67,11 @@ public class WxpayServiceImpl extends BaseComponent implements IWxpayService {
 			res.setStatus(DreamStatus.FAIL);
 			return res;
 		}
+		if (StringUtils.isEmpty(real.getOpenid())) {
+			res.setMsg("请授权微信号！");
+			res.setStatus(DreamStatus.FAIL);
+			return res;
+		}
 		Map<String, String> resmap = new HashMap<String, String>();
 		try {
 			WXPay wxpay = new WXPay(wxconfig);
@@ -84,7 +89,7 @@ public class WxpayServiceImpl extends BaseComponent implements IWxpayService {
 			order.setEquipment(real.getMac());
 			order.setOrderNo(data.get("out_trade_no"));
 			order.setPaymentType(DreamStatus.WX);
-			order.setCreater(real.getOpenappid());
+			order.setOpenid(real.getOpenid());
 		    orderMapper.insertSelective(order);
 			String temp = totalAmt.toString();
 			temp = temp.substring(0, temp.indexOf('.'));

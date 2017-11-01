@@ -34,9 +34,7 @@ public class Order {
 
     private Date lastUpdate;
 
-    private Long creater;
-
-    private Long clientId;
+    private String openid;
 
     public Long getId() {
         return id;
@@ -158,19 +156,11 @@ public class Order {
         this.lastUpdate = lastUpdate;
     }
 
-    public Long getCreater() {
-        return creater;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setCreater(Long creater) {
-        this.creater = creater;
-    }
-
-    public Long getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }

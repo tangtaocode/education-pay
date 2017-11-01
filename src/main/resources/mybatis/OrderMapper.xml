@@ -1,218 +1,208 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="tt.biz.pay.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="tt.biz.pay.model.entity.Order" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
-    <result column="fav_total" property="favTotal" jdbcType="DOUBLE" />
-    <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="quantity" property="quantity" jdbcType="BIGINT" />
-    <result column="equipment" property="equipment" jdbcType="VARCHAR" />
-    <result column="warehouse_code" property="warehouseCode" jdbcType="VARCHAR" />
-    <result column="payment_type" property="paymentType" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="attr01" property="attr01" jdbcType="VARCHAR" />
-    <result column="attr02" property="attr02" jdbcType="VARCHAR" />
-    <result column="attr03" property="attr03" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
-    <result column="creater" property="creater" jdbcType="BIGINT" />
-    <result column="client_id" property="clientId" jdbcType="BIGINT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tt.biz.pay.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="tt.biz.pay.model.entity.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="fav_total" jdbcType="DOUBLE" property="favTotal" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="quantity" jdbcType="BIGINT" property="quantity" />
+    <result column="equipment" jdbcType="VARCHAR" property="equipment" />
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="payment_type" jdbcType="VARCHAR" property="paymentType" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="attr01" jdbcType="VARCHAR" property="attr01" />
+    <result column="attr02" jdbcType="VARCHAR" property="attr02" />
+    <result column="attr03" jdbcType="VARCHAR" property="attr03" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, order_no, fav_total, amount, quantity, equipment, warehouse_code, payment_type, 
-    status, remark, attr01, attr02, attr03, create_date, last_update, creater, client_id
+    status, remark, attr01, attr02, attr03, create_date, last_update, openid
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_order
+    from e_order
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_order
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from e_order
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="tt.biz.pay.model.entity.Order" useGeneratedKeys="true" keyProperty="id">
-    insert into t_order (id, order_no, fav_total, 
+    insert into e_order (id, order_no, fav_total, 
       amount, quantity, equipment, 
       warehouse_code, payment_type, status, 
       remark, attr01, attr02, 
       attr03, create_date, last_update, 
-      creater, client_id)
+      openid)
     values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{favTotal,jdbcType=DOUBLE}, 
       #{amount,jdbcType=DECIMAL}, #{quantity,jdbcType=BIGINT}, #{equipment,jdbcType=VARCHAR}, 
       #{warehouseCode,jdbcType=VARCHAR}, #{paymentType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{attr01,jdbcType=VARCHAR}, #{attr02,jdbcType=VARCHAR}, 
       #{attr03,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, 
-      #{creater,jdbcType=BIGINT}, #{clientId,jdbcType=BIGINT})
+      #{openid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="tt.biz.pay.model.entity.Order" useGeneratedKeys="true" keyProperty="id">
-    insert into t_order
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    insert into e_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="orderNo != null" >
+      <if test="orderNo != null">
         order_no,
       </if>
-      <if test="favTotal != null" >
+      <if test="favTotal != null">
         fav_total,
       </if>
-      <if test="amount != null" >
+      <if test="amount != null">
         amount,
       </if>
-      <if test="quantity != null" >
+      <if test="quantity != null">
         quantity,
       </if>
-      <if test="equipment != null" >
+      <if test="equipment != null">
         equipment,
       </if>
-      <if test="warehouseCode != null" >
+      <if test="warehouseCode != null">
         warehouse_code,
       </if>
-      <if test="paymentType != null" >
+      <if test="paymentType != null">
         payment_type,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark,
       </if>
-      <if test="attr01 != null" >
+      <if test="attr01 != null">
         attr01,
       </if>
-      <if test="attr02 != null" >
+      <if test="attr02 != null">
         attr02,
       </if>
-      <if test="attr03 != null" >
+      <if test="attr03 != null">
         attr03,
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         create_date,
       </if>
-      <if test="lastUpdate != null" >
+      <if test="lastUpdate != null">
         last_update,
       </if>
-      <if test="creater != null" >
-        creater,
-      </if>
-      <if test="clientId != null" >
-        client_id,
+      <if test="openid != null">
+        openid,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="orderNo != null" >
+      <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="favTotal != null" >
+      <if test="favTotal != null">
         #{favTotal,jdbcType=DOUBLE},
       </if>
-      <if test="amount != null" >
+      <if test="amount != null">
         #{amount,jdbcType=DECIMAL},
       </if>
-      <if test="quantity != null" >
+      <if test="quantity != null">
         #{quantity,jdbcType=BIGINT},
       </if>
-      <if test="equipment != null" >
+      <if test="equipment != null">
         #{equipment,jdbcType=VARCHAR},
       </if>
-      <if test="warehouseCode != null" >
+      <if test="warehouseCode != null">
         #{warehouseCode,jdbcType=VARCHAR},
       </if>
-      <if test="paymentType != null" >
+      <if test="paymentType != null">
         #{paymentType,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="attr01 != null" >
+      <if test="attr01 != null">
         #{attr01,jdbcType=VARCHAR},
       </if>
-      <if test="attr02 != null" >
+      <if test="attr02 != null">
         #{attr02,jdbcType=VARCHAR},
       </if>
-      <if test="attr03 != null" >
+      <if test="attr03 != null">
         #{attr03,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="lastUpdate != null" >
+      <if test="lastUpdate != null">
         #{lastUpdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="creater != null" >
-        #{creater,jdbcType=BIGINT},
-      </if>
-      <if test="clientId != null" >
-        #{clientId,jdbcType=BIGINT},
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="tt.biz.pay.model.entity.Order" >
-    update t_order
-    <set >
-      <if test="orderNo != null" >
+  <update id="updateByPrimaryKeySelective" parameterType="tt.biz.pay.model.entity.Order">
+    update e_order
+    <set>
+      <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="favTotal != null" >
+      <if test="favTotal != null">
         fav_total = #{favTotal,jdbcType=DOUBLE},
       </if>
-      <if test="amount != null" >
+      <if test="amount != null">
         amount = #{amount,jdbcType=DECIMAL},
       </if>
-      <if test="quantity != null" >
+      <if test="quantity != null">
         quantity = #{quantity,jdbcType=BIGINT},
       </if>
-      <if test="equipment != null" >
+      <if test="equipment != null">
         equipment = #{equipment,jdbcType=VARCHAR},
       </if>
-      <if test="warehouseCode != null" >
+      <if test="warehouseCode != null">
         warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
       </if>
-      <if test="paymentType != null" >
+      <if test="paymentType != null">
         payment_type = #{paymentType,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="attr01 != null" >
+      <if test="attr01 != null">
         attr01 = #{attr01,jdbcType=VARCHAR},
       </if>
-      <if test="attr02 != null" >
+      <if test="attr02 != null">
         attr02 = #{attr02,jdbcType=VARCHAR},
       </if>
-      <if test="attr03 != null" >
+      <if test="attr03 != null">
         attr03 = #{attr03,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="lastUpdate != null" >
+      <if test="lastUpdate != null">
         last_update = #{lastUpdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="creater != null" >
-        creater = #{creater,jdbcType=BIGINT},
-      </if>
-      <if test="clientId != null" >
-        client_id = #{clientId,jdbcType=BIGINT},
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="tt.biz.pay.model.entity.Order" >
-    update t_order
+  <update id="updateByPrimaryKey" parameterType="tt.biz.pay.model.entity.Order">
+    update e_order
     set order_no = #{orderNo,jdbcType=VARCHAR},
       fav_total = #{favTotal,jdbcType=DOUBLE},
       amount = #{amount,jdbcType=DECIMAL},
@@ -227,65 +217,10 @@
       attr03 = #{attr03,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP},
-      creater = #{creater,jdbcType=BIGINT},
-      client_id = #{clientId,jdbcType=BIGINT}
+      openid = #{openid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByUniqueSelective" parameterType="tt.biz.pay.model.entity.Order" >
-    update t_order
-    <set >
-      <if test="orderNo != null" >
-        order_no = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="favTotal != null" >
-        fav_total = #{favTotal,jdbcType=DOUBLE},
-      </if>
-      <if test="amount != null" >
-        amount = #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="quantity != null" >
-        quantity = #{quantity,jdbcType=BIGINT},
-      </if>
-      <if test="equipment != null" >
-        equipment = #{equipment,jdbcType=VARCHAR},
-      </if>
-      <if test="warehouseCode != null" >
-        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
-      </if>
-      <if test="paymentType != null" >
-        payment_type = #{paymentType,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="attr01 != null" >
-        attr01 = #{attr01,jdbcType=VARCHAR},
-      </if>
-      <if test="attr02 != null" >
-        attr02 = #{attr02,jdbcType=VARCHAR},
-      </if>
-      <if test="attr03 != null" >
-        attr03 = #{attr03,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdate != null" >
-        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creater != null" >
-        creater = #{creater,jdbcType=BIGINT},
-      </if>
-      <if test="clientId != null" >
-        client_id = #{clientId,jdbcType=BIGINT},
-      </if>
-    </set>
-    where order_no = #{orderNo,jdbcType=VARCHAR}
-  </update>
-  <select id="selectByParams" resultMap="BaseResultMap" parameterType="tt.biz.pay.model.entity.Order" >
+   <select id="selectByParams" resultMap="BaseResultMap" parameterType="invengo.cn.pay.model.entity.Order" >
       select 
     <include refid="Base_Column_List" />
     from t_order
@@ -296,5 +231,5 @@
       <if test="id != null" >
         order_no = #{id,jdbcType=BIGINT}
       </if>
-  </select>
+</select>
 </mapper>

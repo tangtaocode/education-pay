@@ -95,11 +95,11 @@ public class AlipayServiceImpl extends BaseComponent implements IAlipayService {
 				res.setMsg("支付宝下订单成功！");
 				res.setStatus(DreamStatus.SUCCESS);
 				// 下单成功存入redies缓存
-				CacheObject cache = new CacheObject();
-				cache.setDevice_info(real.getMac());
-				cache.setOut_trade_no(order.getOut_trade_no());
-				cache.setUserId(real.getOpenappid());
-				cache.setIspay(false);
+//				CacheObject cache = new CacheObject();
+//				cache.setDevice_info(real.getMac());
+//				cache.setOut_trade_no(order.getOut_trade_no());
+//				cache.setUserId(real.getOpenid());
+//				cache.setIspay(false);
 				//redis.set(order.getOut_trade_no(), cache, 4 * 60 * 60L);
 				exmap.put("totalAmt", stockVo.getTotalAmt() + "");
 				exmap.put("totalDisAmt", stockVo.getTotalDisAmt() + "");
