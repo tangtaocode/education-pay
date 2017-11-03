@@ -30,6 +30,7 @@ public class PriceSearchServiceImpl implements IPriceSearchService {
 		String qty = "0";
 		BigDecimal price01 = null;
 		for (StockEx stock : stocks) {
+		  
 			if (stock.getSaleQty() != null && stock.getSaleQty() > 0) {
 				qty = String.valueOf(stock.getQty() - stock.getSaleQty());
 			} else {
