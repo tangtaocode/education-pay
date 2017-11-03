@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tt.biz.pay.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="tt.biz.pay.model.entity.Teacher" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="payment" property="payment" jdbcType="DECIMAL" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="teacher_time" property="teacherTime" jdbcType="DECIMAL" />
+    <result column="self_evaluation" property="selfEvaluation" jdbcType="VARCHAR" />
+    <result column="socre" property="socre" jdbcType="VARCHAR" />
+    <result column="student_count" property="studentCount" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="attr01" property="attr01" jdbcType="VARCHAR" />
+    <result column="attr02" property="attr02" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="last_time" property="lastTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type, nationality, level, payment, unit, teacher_time, self_evaluation, 
+    socre, student_count, start_time, pic_url, attr01, attr02, create_time, last_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from e_teacher
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from e_teacher
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tt.biz.pay.model.entity.Teacher" useGeneratedKeys="true" keyProperty="id">
+    insert into e_teacher (id, name, type, 
+      nationality, level, payment, 
+      unit, teacher_time, self_evaluation, 
+      socre, student_count, start_time, 
+      pic_url, attr01, attr02, 
+      create_time, last_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{nationality,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{payment,jdbcType=DECIMAL}, 
+      #{unit,jdbcType=VARCHAR}, #{teacherTime,jdbcType=DECIMAL}, #{selfEvaluation,jdbcType=VARCHAR}, 
+      #{socre,jdbcType=VARCHAR}, #{studentCount,jdbcType=INTEGER}, #{startTime,jdbcType=DATE}, 
+      #{picUrl,jdbcType=VARCHAR}, #{attr01,jdbcType=VARCHAR}, #{attr02,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{lastTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="tt.biz.pay.model.entity.Teacher" useGeneratedKeys="true" keyProperty="id">
+    insert into e_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="teacherTime != null" >
+        teacher_time,
+      </if>
+      <if test="selfEvaluation != null" >
+        self_evaluation,
+      </if>
+      <if test="socre != null" >
+        socre,
+      </if>
+      <if test="studentCount != null" >
+        student_count,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="attr01 != null" >
+        attr01,
+      </if>
+      <if test="attr02 != null" >
+        attr02,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherTime != null" >
+        #{teacherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="selfEvaluation != null" >
+        #{selfEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="socre != null" >
+        #{socre,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCount != null" >
+        #{studentCount,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="attr01 != null" >
+        #{attr01,jdbcType=VARCHAR},
+      </if>
+      <if test="attr02 != null" >
+        #{attr02,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tt.biz.pay.model.entity.Teacher" >
+    update e_teacher
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherTime != null" >
+        teacher_time = #{teacherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="selfEvaluation != null" >
+        self_evaluation = #{selfEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="socre != null" >
+        socre = #{socre,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCount != null" >
+        student_count = #{studentCount,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="attr01 != null" >
+        attr01 = #{attr01,jdbcType=VARCHAR},
+      </if>
+      <if test="attr02 != null" >
+        attr02 = #{attr02,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="lastTime != null" >
+        last_time = #{lastTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tt.biz.pay.model.entity.Teacher" >
+    update e_teacher
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      payment = #{payment,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=VARCHAR},
+      teacher_time = #{teacherTime,jdbcType=DECIMAL},
+      self_evaluation = #{selfEvaluation,jdbcType=VARCHAR},
+      socre = #{socre,jdbcType=VARCHAR},
+      student_count = #{studentCount,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=DATE},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      attr01 = #{attr01,jdbcType=VARCHAR},
+      attr02 = #{attr02,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      last_time = #{lastTime,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
