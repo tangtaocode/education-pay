@@ -131,7 +131,7 @@
 			</plugin>
 		</plugins>
 
-<!-- 
+<!--
 		<resources>
 			<resource>
 				<directory>lib</directory>
@@ -144,7 +144,7 @@
 				<directory>src/main/resources</directory>
 				<targetPath>BOOT-INF/classes/</targetPath>
 			</resource>
-		</resources> -->
+		</resources>  -->
 	</build>
 
 	<repositories>

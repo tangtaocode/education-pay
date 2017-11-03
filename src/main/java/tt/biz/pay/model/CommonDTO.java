@@ -41,21 +41,21 @@ public class CommonDTO implements IPayDTO,Serializable
 	public void setOpenid(String openid) {
 		this.openid = openid;
 	}
-  public int getStart()
-  {
-    return start;
-  }
-  public void setStart(int start)
-  {
-    this.start = start;
-  }
-  public int getEnd()
-  {
-    return end;
-  }
-  public void setEnd(int end)
-  {
-    this.end = end;
-  }
+    public int getStart()
+    {
+      return start;
+    }
+    public void setStart(int start)
+    {
+      this.start = start;
+    }
+    public int getEnd()
+    {
+      return end;
+    }
+    public void setEnd(int end)
+    {
+      this.end = end;
+    }
 	
 }

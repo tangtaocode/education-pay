@@ -138,9 +138,9 @@
       last_time = #{lastTime,jdbcType=DATE}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="loadAll" resultMap="BaseResultMap" parameterType="tt.biz.pay.model.commonDTO">
+  <select id="loadAll" resultMap="BaseResultMap" parameterType="tt.biz.pay.model.CommonDTO">
   	select 
     <include refid="Base_Column_List" />
-    from e_course limit #{start,jdbcType=BIGINT},#{end,jdbcType=Integer}
+    from e_course limit #{start,jdbcType=BIGINT},#{end,jdbcType=BIGINT}
   </select>
 </mapper>
