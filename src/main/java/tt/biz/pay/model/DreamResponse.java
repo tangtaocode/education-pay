@@ -19,6 +19,8 @@ public class DreamResponse<T> implements Serializable {
 	
 	private int total = 0;
 	
+	private T single;
+	
 	private List<T> data;
 	
 
@@ -81,4 +83,15 @@ public class DreamResponse<T> implements Serializable {
 	public void setData(List<T> data) {
 		this.data = data;
 	}
+
+    public T getSingle()
+    {
+      return single;
+    }
+  
+    public void setSingle(T single)
+    {
+      this.single = single;
+    }
+	
 }

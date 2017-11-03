@@ -1,7 +1,6 @@
 package tt.biz.pay.model;
 
 import java.io.Serializable;
-import java.util.List;
 /**
  * 
  * @ClassName:  CommonDTO   
@@ -17,6 +16,10 @@ public class CommonDTO implements IPayDTO,Serializable
   private String openid; //微信号ip
   
   private Double totalAmt;//总金额
+  
+  private int start=0;
+  
+  private int  end =0;
   
   public String getMac()
   {
@@ -38,5 +41,21 @@ public class CommonDTO implements IPayDTO,Serializable
 	public void setOpenid(String openid) {
 		this.openid = openid;
 	}
+  public int getStart()
+  {
+    return start;
+  }
+  public void setStart(int start)
+  {
+    this.start = start;
+  }
+  public int getEnd()
+  {
+    return end;
+  }
+  public void setEnd(int end)
+  {
+    this.end = end;
+  }
 	
 }

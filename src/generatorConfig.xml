@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 	<classPathEntry
-		location="E:\invengoWorkSpace\trunk\share\software\06-repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar" />
+		location="E:\invengoWorkSpace\trunk\share\software\06-repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar" />
 	<context id="generator-code">
 	<commentGenerator>           
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->             
@@ -10,16 +10,16 @@
          </commentGenerator>  
          
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.1.185:3306/hhbox_devp" userId="root"
-			password="ywgit201707" />
+			connectionURL="jdbc:mysql://119.29.191.105:3306/education_devp" userId="root"
+			password="123456" />
 		<javaModelGenerator targetPackage="tt.biz.pay.model.entity"
-			targetProject="PayControlService/src/main/java" />
+			targetProject="education-pay/src/main/java" />
 		<sqlMapGenerator targetPackage="mybatis"
-			targetProject="PayControlService/src/main/resources" />
+			targetProject="education-pay/src/main/resources" />
 		<javaClientGenerator targetPackage="tt.biz.pay.mapper"
-			targetProject="PayControlService/src/main/java" type="XMLMAPPER" />
+			targetProject="education-pay/src/main/java" type="XMLMAPPER" />
 		
-		<table tableName="t_warehouse" domainObjectName="Warehouse"
+		<table tableName="e_weixin" domainObjectName="Weixin"
 
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
