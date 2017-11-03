@@ -220,7 +220,7 @@
       openid = #{openid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-   <select id="selectByParams" resultMap="BaseResultMap" parameterType="invengo.cn.pay.model.entity.Order" >
+   <select id="selectByParams" resultMap="BaseResultMap" parameterType="tt.biz.pay.model.entity.Order" >
       select 
     <include refid="Base_Column_List" />
     from t_order

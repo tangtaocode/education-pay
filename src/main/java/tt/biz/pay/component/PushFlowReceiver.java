@@ -19,8 +19,8 @@ public class PushFlowReceiver {
   private IAccessPushService accessPushService;
   @Autowired
   private AccessConfig accessConfig;
-      @RabbitListener(queues = RabbitConfig.serverInlineQueue)
-	  @RabbitHandler
+      //@RabbitListener(queues = RabbitConfig.serverInlineQueue)
+	  //@RabbitHandler
 	  public void process(String json) {
         CacheObject cacheObject = new Gson().fromJson(json, CacheObject.class);
         logger.info("队列serverInlineQueue消费数据："+json);

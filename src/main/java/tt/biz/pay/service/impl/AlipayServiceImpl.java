@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import tt.biz.pay.component.BaseComponent;
 import tt.biz.pay.component.PayMsgSender;
 import tt.biz.pay.config.ALconfig;
+import tt.biz.pay.mapper.OrderMapper;
 import tt.biz.pay.model.AliPayDTO;
 import tt.biz.pay.model.CacheObject;
 import tt.biz.pay.model.CommonDTO;
@@ -38,6 +39,7 @@ import tt.biz.pay.model.StockVO;
 import tt.biz.pay.model.ali.AlGoodsDetail;
 import tt.biz.pay.model.ali.NotifyResponse;
 import tt.biz.pay.model.ali.OrderRequest;
+import tt.biz.pay.model.entity.Order;
 import tt.biz.pay.model.entity.OrderItem;
 import tt.biz.pay.model.entity.StockEx;
 import tt.biz.pay.service.IAlipayService;
@@ -58,10 +60,7 @@ public class AlipayServiceImpl extends BaseComponent implements IAlipayService {
 	@Autowired
 	private IPriceSearchService priceSearchService;
 	@Autowired
-	private RedisCacheServiceImpl redis;
-	@Autowired
-	private PayMsgSender payMsgSender;
-	
+	private OrderMapper orderMapper;
 	@Override
 	public DreamResponse unifiedOrder(IPayDTO dto) {
 		DreamResponse res = new DreamResponse();
@@ -247,6 +246,11 @@ public class AlipayServiceImpl extends BaseComponent implements IAlipayService {
 					map.put("out_trade_no", real.getOut_trade_no());
 					map.put("status", DreamStatus.SUCCESS);
 					map.put("type", MessageType.PAY_OVER);
+                    Order order = new Order();
+                    order.setOrderNo(real.getOut_trade_no());
+                    order = orderMapper.selectByParams(order);
+                    order.setStatus(DreamStatus.SUCCESS);
+                    orderMapper.updateByPrimaryKeySelective(order);
 //					CacheObject cache = new CacheObject();
 //					cache = (CacheObject) redis.get(real.getOut_trade_no());
 //					cache.setIspay(true);
@@ -268,9 +272,10 @@ public class AlipayServiceImpl extends BaseComponent implements IAlipayService {
 	}
 
 	private boolean isPay(String out_trade_no) {
-		CacheObject cache = (CacheObject) redis.get(out_trade_no);
-		logger.info("***********支付宝取出缓存数据*************" + new Gson().toJson(cache));
-		return cache.isIspay();
+	  Order order = new Order();
+      order.setOrderNo(out_trade_no);
+      order = orderMapper.selectByParams(order);
+      return DreamStatus.SUCCESS.equals(order.getStatus());
 	}
 
 	@Override

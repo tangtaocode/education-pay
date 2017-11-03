@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : localhost
 Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : education_dev
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-11-01 23:55:19
+Date: 2017-11-03 13:31:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,11 +81,12 @@ CREATE TABLE `e_order` (
   `openid` varchar(50) DEFAULT NULL COMMENT '微信号id',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no_index` (`order_no`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of e_order
 -- ----------------------------
+INSERT INTO `e_order` VALUES ('93', '20171103134291464917146765751382', null, '0.01', null, '323', null, 'WX', null, null, null, null, null, '2017-11-03 11:31:41', null, 'wx24234');
 
 -- ----------------------------
 -- Table structure for `e_teacher`
@@ -149,7 +150,7 @@ CREATE TABLE `e_weixin` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `openid` varchar(50) DEFAULT NULL COMMENT '微信号id',
   `name` varchar(100) DEFAULT NULL COMMENT '公众号名称',
-  `pic_url` varchar(100) DEFAULT NULL COMMENT '图像地址',
+  `pic_url` varchar(500) DEFAULT NULL COMMENT '图像地址',
   `attr01` varchar(100) DEFAULT NULL,
   `attr02` varchar(100) DEFAULT NULL,
   `create_time` date DEFAULT NULL COMMENT '创建时间',

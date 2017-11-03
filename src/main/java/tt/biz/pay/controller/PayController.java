@@ -1,11 +1,13 @@
 package tt.biz.pay.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
 import tt.biz.pay.model.CommonDTO;
 import tt.biz.pay.model.DreamResponse;
 import tt.biz.pay.model.DreamStatus;
@@ -22,7 +24,7 @@ import tt.biz.pay.service.IWxpayService;
  * @author: tt1498
  * @date:   2017年9月8日 下午2:33:39
  */
-@RestClientTest
+@RestController
 @RequestMapping("/pay")
 @SuppressWarnings("rawtypes")
 public class PayController
@@ -41,7 +43,8 @@ public class PayController
    * @return: DreamResponse      
    * @throws
    */
-  @RequestMapping("/unifiedOrder")
+  @ApiOperation(value="支付分类下订单")
+  @RequestMapping(value="/unifiedOrder",method=RequestMethod.POST)
   @ResponseBody
   public DreamResponse unifiedOrder(CommonDTO dto){
     if(DreamStatus.AL.equals(DreamStatus.WX)){
@@ -58,6 +61,7 @@ public class PayController
    * @return: DreamResponse      
    * @throws
    */
+  @ApiIgnore
   @RequestMapping("/multUnifiedOrder")
   @ResponseBody
   public DreamResponse multUnifiedOrder(CommonDTO dto){
@@ -71,6 +75,7 @@ public class PayController
    * @return: String      
    * @throws
    */
+  @ApiIgnore
   @RequestMapping(value="/wxNotify")
   @ResponseBody
   public String wxNotify(WxPayDTO wxdto){
@@ -84,6 +89,7 @@ public class PayController
    * @return: String      
    * @throws
    */
+  @ApiIgnore
   @RequestMapping("/alNotify")
   @ResponseBody
   public String alNotify(NotifyResponse dto){
@@ -97,6 +103,7 @@ public class PayController
    * @return: DreamResponse      
    * @throws
    */
+  @ApiIgnore
   @RequestMapping("/gateway")
   @ResponseBody
   public void gateway(){
@@ -110,7 +117,8 @@ public class PayController
    * @return: DreamResponse      
    * @throws   
    */ 
-  @RequestMapping("/orderQuery")
+  @ApiOperation(value="支付订单查询")
+  @RequestMapping(value="/orderQuery",method=RequestMethod.POST)
   @ResponseBody
   public DreamResponse orderQuery(String out_trade_no) {
     return commonPayService.orderQuery(out_trade_no);

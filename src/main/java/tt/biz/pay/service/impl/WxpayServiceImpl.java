@@ -15,10 +15,8 @@ import com.alipay.api.internal.util.StringUtils;
 import com.google.gson.Gson;
 
 import tt.biz.pay.component.BaseComponent;
-import tt.biz.pay.component.PayMsgSender;
 import tt.biz.pay.config.WXconfig;
 import tt.biz.pay.mapper.OrderMapper;
-import tt.biz.pay.model.CacheObject;
 import tt.biz.pay.model.CommonDTO;
 import tt.biz.pay.model.DreamResponse;
 import tt.biz.pay.model.DreamStatus;
@@ -33,7 +31,6 @@ import tt.biz.pay.service.IPriceSearchService;
 import tt.biz.pay.service.IWxpayService;
 import tt.biz.pay.utils.DateUtils;
 import tt.biz.pay.utils.OrderUtil;
-import tt.biz.pay.utils.RedisCacheServiceImpl;
 import tt.biz.pay.utils.RequestUtil;
 import tt.biz.pay.utils.StockUtil;
 import tt.biz.pay.utils.wxsdk.WXPay;
@@ -49,10 +46,6 @@ public class WxpayServiceImpl extends BaseComponent implements IWxpayService {
 	private WXconfig wxconfig;
 	@Autowired
 	private WXrequestParamsBean wxbean;
-	@Autowired
-	private RedisCacheServiceImpl redis;
-	@Autowired
-	private PayMsgSender payMsgSender;
 	@Autowired
 	private IPriceSearchService priceSearchService;
 	@Autowired
@@ -271,6 +264,11 @@ public class WxpayServiceImpl extends BaseComponent implements IWxpayService {
 					//map.put("type", MessageType.PUSH_MESS);
 					//mjson = new Gson().toJson(cache);
 					//payMsgSender.sendServer(mjson);
+					Order order = new Order();
+				    order.setOrderNo(real.getOut_trade_no());
+				    order = orderMapper.selectByParams(order);
+				    order.setStatus(DreamStatus.SUCCESS);
+				    orderMapper.updateByPrimaryKeySelective(order);
 					res.put("return_code", DreamStatus.SUCCESS);
 					res.put("return_msg", "OK");
 				} else {
@@ -301,7 +299,9 @@ public class WxpayServiceImpl extends BaseComponent implements IWxpayService {
 	}
 
 	private boolean isPay(String out_trade_no) {
-		CacheObject cache = (CacheObject) redis.get(out_trade_no);
-		return cache.isIspay();
+	  Order order = new Order();
+      order.setOrderNo(out_trade_no);
+      order = orderMapper.selectByParams(order);
+      return DreamStatus.SUCCESS.equals(order.getStatus());
 	}
 }
