@@ -49,5 +49,4 @@ public class AccessConfig
   {
     return app_secret;
   }
-  
 }
