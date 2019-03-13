@@ -2,6 +2,7 @@ package tt.biz.pay.config;
 
 import java.io.InputStream;
 
+import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
